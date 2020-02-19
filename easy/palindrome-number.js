@@ -1,11 +1,17 @@
-/**
- * @param {number} x
- * @return {boolean}
- */
 const isPalindrome = function(x) {
-  let xToString = x.toString()
-  let stringNum = xToString.split("").reverse().join("")  
-  return stringNum === xToString
+  let xCopy = x
+
+  if (x < 0) {
+    return false
+  } 
+
+  let reversedNum = 0
+    while (xCopy > 0) {
+      reversedNum = reversedNum * 10 + xCopy % 10
+      xCopy = parseInt(xCopy/10)
+    }
+    
+  return x === reversedNum
 }
 
-isPalindrome(-1221)
+isPalindrome(123421)
