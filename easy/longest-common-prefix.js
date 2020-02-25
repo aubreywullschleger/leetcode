@@ -2,48 +2,21 @@
  * @param {string[]} strs
  * @return {string}
  */
-var longestCommonPrefix = function(strs) {
-  let foundPrefix = {}
-
+const longestCommonPrefix = strs => {
+  let currentWord = strs[0]
+  let foundPrefix = ""
   for (let i = 0; i < strs.length; i++) {
-    for (let j = 0; j < strs[i].length; j++) {
-      if (
-        typeof strs[i + 1] !== "undefined" &&
-        strs[i][j] === strs[i + 1][j] &&
-        !foundPrefix[strs[i][j]]
-      ) {
-        foundPrefix[strs[i][j]] = 1
-      } else if (
-        typeof strs[i + 1] !== "undefined" &&
-        strs[i][j] === strs[i + 1][j] &&
-        foundPrefix[strs[i][j]]
-      ) {
-        foundPrefix[strs[i][j]] += 1
+    foundPrefix = ""
+    for (let j = 0; j < currentWord.length; j++) {
+      if (currentWord[j] === strs[i][j] && currentWord[0] === strs[i][0]) {
+        foundPrefix += currentWord[j]
       }
     }
-  }
-  console.log(foundPrefix)
-  // let arr = Object.values(foundPrefix)
-  // let max = Math.max(...arr)
-  // console.log(arr)
-  // console.log(max)
-
-  // start alternate solve wip:
-  // for each string in strings array
-  //check if first character in string is same as first character in the other strings
-  // continue as long as each next char matches the same place in each string in array
-
-  // let foundPrefix = ""
-
-  // for (let i = 0; i < strs.length; i++) {
-  //   for (let j = 0; j < strs[i].length; j++) {
-  //     if (typeof strs[i + 1] !== "undefined" && strs[i][j] === strs[i + 1][j]) {
-  //       foundPrefix += strs[i][j]
-  //     }
-  //   }
-  // }
-  // console.log(foundPrefix)
+    currentWord = foundPrefix
+  } 
+  return foundPrefix  
 }
 
 console.log(longestCommonPrefix(["flower", "flow", "flight"]))
 // console.log(longestCommonPrefix(["dog","racecar","car"]))
+// console.log(longestCommonPrefix(["aba","cba"]))
